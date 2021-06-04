@@ -17,6 +17,7 @@ function App() {
   //when start is 0 that means its the machine turn, in case it is 1 than that means it is the human turn
   const start= Math.random() < 0.5 ? 0 : 1;
   
+  const [gameResult,setGameResult]=useState("");
  
   var humanmark="X";
   var computermark="O";
@@ -89,8 +90,10 @@ function App() {
       }
       //if the row has all with same value than we terminate and we declare the winner
       if(rowWithSameValues&&(tempmark==="X"||tempmark==="O")){
-        if(!vision)
+        if(!vision){
         setHasWon(1);
+        setGameResult(tempmark+" Has won !")
+        }
         return tempmark;
       }
 
@@ -110,21 +113,29 @@ function App() {
 
      //this will go over each column, if the column has all x or all o than it will return the fact that winning occured
      if((temprow0[0]===tempForFirstCol&&temprow1[0]===tempForFirstCol&&temprow2[0]===tempForFirstCol&&tempForFirstCol!=="")){
-      if(!vision)
+      if(!vision){
       setHasWon(1);
+      setGameResult(tempForFirstCol+" Has won !")
+
+      }
       return tempForFirstCol;
       
      }
      if((temprow0[1]===tempForSecCol&&temprow1[1]===tempForSecCol&&temprow2[1]===tempForSecCol&&tempForSecCol!=="")){
-      if(!vision)
+      if(!vision){
       setHasWon(1);
+      setGameResult(tempForSecCol+" Has won !")
+
+      }
       return tempForSecCol;
      }
 
 
      if((temprow0[2]===tempForThirdCol&&temprow1[2]===tempForThirdCol&&temprow2[2]===tempForThirdCol&&tempForThirdCol!=="")){
-      if(!vision)
+      if(!vision){
       setHasWon(1);
+      setGameResult(tempForThirdCol+" Has won !");
+      }
       return tempForThirdCol;
      }
 
@@ -136,16 +147,22 @@ function App() {
 
       
      if((temprow0[0]===tempForFirstdiagnal&&temprow1[1]===tempForFirstdiagnal&&temprow2[2]===tempForFirstdiagnal&&tempForFirstdiagnal!=="")){
-      if(!vision)
+      if(!vision){
       setHasWon(1);
+      setGameResult(tempForFirstdiagnal+" Has won !");
+
+      }
       return tempForFirstdiagnal;
       
      }
 
 
      if((temprow0[2]===tempForSecdiagnal&&temprow1[1]===tempForSecdiagnal&&temprow2[0]===tempForSecdiagnal&&tempForSecdiagnal!=="")){
-      if(!vision)
+      if(!vision){
       setHasWon(1);
+      setGameResult(tempForSecdiagnal+" Has won !");
+
+      }
       return tempForSecdiagnal;
       
      }
@@ -153,8 +170,11 @@ function App() {
 
      if(temprow0[0]!==""&&temprow0[1]!==""&&temprow0[2]!==""&&temprow1[0]!==""&&temprow1[1]!==""&&temprow1[2]!==""&&temprow2[0]!==""&&temprow2[1]!==""&&temprow2[2]!==""){
 
-      if(!vision)
+      if(!vision){
         setHasWon(2);
+        setGameResult("Draw!");
+
+      }
 
      return "T";}
 
@@ -358,6 +378,9 @@ function App() {
     <div className="container">
 
 
+      <p className="text">Tic-Tac-Toe</p>
+
+
 
       <div className="board">
 
@@ -391,6 +414,10 @@ function App() {
         )
       }
       </div>
+
+
+      <p className="text">{gameResult}</p>
+
 
     
     </div>
