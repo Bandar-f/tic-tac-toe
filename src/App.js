@@ -418,6 +418,8 @@ function App() {
 
       <p className="text">{gameResult}</p>
 
+      {gameResult!==""?<button className="btn" onClick={()=>{window.location.reload(false)}}>Start over</button>:""}
+
 
     
     </div>
